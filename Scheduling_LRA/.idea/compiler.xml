@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Binpack-java" />
+        <module name="Scheduling_LRA" />
       </profile>
     </annotationProcessing>
   </component>
