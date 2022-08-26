@@ -7,4 +7,4 @@ The experiment has three stpes as in following figure.
 
 
 ### Data Formulation and Analysis
-The original data is in ‘src/data/input’. Firstly formulate analyze the data using ‘Analysis_Generate_data.ipynb’
+The original data is in 'src/data/input'. Firstly formulate analyze the data using 'Analysis_Generate_data.ipynb'
