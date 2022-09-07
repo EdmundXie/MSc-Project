@@ -5,6 +5,7 @@ The experiment has three stpes as in following figure.
 <div align=center><img src="https://user-images.githubusercontent.com/41847989/186922971-a8bedcee-0247-4727-8a82-33b7152a8d0e.png"></div>
 <!-- <img width="250" alt="image" src="https://user-images.githubusercontent.com/41847989/186922971-a8bedcee-0247-4727-8a82-33b7152a8d0e.png"> -->
 
-
+## Running experiments
 ### Data Formulation and Analysis
-The original data is in `src/data/input`. Firstly formulate analyze the data using `Analysis_Generate_data.ipynb`
+The original data is in `src/data/input`. Firstly formulate analyze the data using `Analysis_Generate_data.ipynb`. Generate `processed_data`
+### Data Formulation and Analysis
