@@ -7,5 +7,8 @@ The experiment has three stpes as in following figure.
 
 ## Running experiments
 ### Data Formulation and Analysis
-The original data is in `src/data/input`. Firstly formulate analyze the data using `Analysis_Generate_data.ipynb`. Generate `processed_data`
-### Data Formulation and Analysis
+The original data is in `src/data/input`. Formulate analyze the data using `Analysis_Generate_data.ipynb` which Generates `processed_data` in that file.
+### Alorithms implementation
+Run `src/main/java/binpacklib/Main`. In the main function select the location of the input and output files and choose the algorithm to be deployed.
+### Alorithms performance visualization
+The results are in `src/data/results`. Running `Result_Analysis.ipynb` to analyse the results.
