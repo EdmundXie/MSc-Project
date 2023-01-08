@@ -42,15 +42,11 @@ Garefalakis et al. (2018), Muritiba et al. (2009) and Clement et al. (2022) used
 
 Notations used in scheduling problems of LRAs are as follows:
 
-
-<div align=left><img width="629" alt="截屏2023-01-08 21 30 43" src="https://user-images.githubusercontent.com/41847989/211220089-c65a61e3-7875-416f-91d1-a8851cfa160e.png"></div>
-
-<!-- <div align=center><img width="763" alt="截屏2023-01-08 21 25 46" src="https://user-images.githubusercontent.com/41847989/211219889-37c0fc4a-0875-4296-b3bc-7421ede8204d.png"></div> -->
 <div align=left><img width="728" alt="截屏2023-01-08 21 34 26" src="https://user-images.githubusercontent.com/41847989/211220267-1508d437-61ee-4944-a193-f225657f23fa.png"></div>
 
+Specifically, the problem is to allocate all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other, each node does not exceed the capacity in d dimensions, and ultimately the number of nodes is minimised. It is formulated to ILP as follows:
 
-
-
+<div align=left><img width="725" alt="截屏2023-01-08 21 36 56" src="https://user-images.githubusercontent.com/41847989/211220351-bf9b630a-bbce-4aaa-b92e-125993fa0f14.png"></div>
 
 ## Implementation of project
 All data are from Alibaba traces which are sampled from one of their production clusters, avaliable on https://tianchi.aliyun.com/dataset/dataDetail?dataId=6287.
