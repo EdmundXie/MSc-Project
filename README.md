@@ -33,26 +33,6 @@ The problem is a d-dimensional vector bin packing problem with conflicts VBPd, i
 The scheduling of LRAs in nodes usually considers the nodes’ capacity, such as CPU and memory capacity, in analogy to the size of the bin in different dimensions. However, they must be accumulated in each dimension when placed. This means an LRA will occupy a separate CPU and memory buffer at runtime, not shared with other LRAs. There are also conflicts between LRAs that mutually exclusive LRAs cannot be placed in the same container.
 Garefalakis et al. (2018), Muritiba et al. (2009) and Clement et al. (2022) used the Integer Liner programming (ILP) model as a formulation for the bin packing problem with conflicts and achieved good results. Inspired by them, we formulate it as a simplified version of the ILP introduced by Clement et al. (2022). Specifically, it deals with [P3] with satisfying all constraints [R1]-[R4].
 Notations used in scheduling problems of LRAs are as follows:
-L denotes the set of LRAs,
-I_l denotes the set of replicas that belongs to an LRA l, l∈L,
-N denotes the set of nodes,
-F denotes the set of pairs (l_1,l_2) of LRAs that have conflicts
-C_h denotes the capacity of each node in dimension h, 1≤h≤d
-¯C_hn denotes the remaining capacity of the activated node n in dimension h, y_n=1, 1≤h≤d
-s_lh denotes the size of the LRA l in dimension h, l∈L, 1≤h≤d
-y_n denotes whether node n is used, equals to 1 if it is used, 0 otherwise, n∈N, y_n∈{0,1}
-x_(i_l n) denotes whether replica i_l of the LRA l is assigned to node n, equals to 1 if it is assigned, 0 otherwise, i_l∈I_l, n∈N, x_(i_l n)∈{0,1}
-z_ln denotes whether one replica of LRA l is assigned to node n, equals to 1 if it is assigned, 0 otherwise, l∈L, n∈N, x_(i_l n)∈{0,1}
-Specifically, the problem is to allocate all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other, each node does not exceed the capacity in d dimensions, and ultimately the number of nodes is minimised. It is formulated to ILP as follows: 
-min    ∑_(n∈N)▒y_n                                                                                                                       (a)
-s.t.     ∑_(n∈N)▒〖x_(i_l n)=1〗                                                               〖i_l∈I〗_l,l∈L,                            (b)
-          ∑_(l∈L)▒〖(s〗_lh ∙∑_(i∈I_l)▒x_(i_l n) )≤C_h∙y_n                                       n∈N,1≤h≤d,                    (c)
-          ∑_(i∈I_l)▒x_(i_l n) ≤〖(min〗⁡{min┬(1≤h≤d)⁡{⌊C_h/s_lh ⌋},|I_l |}∙z_ln)                          n∈N, l∈L,                            (d)
-          ∑_(i∈I_l)▒x_(i_l n) ≥z_ln                                                            n∈N, l∈L,                             (e)
-          ∑_(i∈I_(l_1 ))▒x_(i_(l_1 ) n) ≤〖(min〗⁡{min┬(1≤h≤d)⁡{⌊C_h/s_(l_1 h) ⌋},|I_(l_1 ) |}∙(1-z_(l_2 n)))     n∈N, (l_1,l_2)∈F,                   (f)
-In this ILP, the aim (a) is to minimize the number of nodes used. (b) represents all replicas of all LRAs allocated to nodes. (c) means resources in d dimensions used in nodes not outweighed the capacity of each node. Furthermore, in (d) min⁡{min┬(1≤h≤d)⁡{⌊C_h/s_lh ⌋},|I_l |} is the maximum number of LRA replicas can be placed in a node ignoring conflict restrictions. So (d) and (e) ensure that the resource size required for a replica in a dimension cannot exceed the capacity of that dimension. In addition, the number of placements exceeds the number of LRA replicas that cannot be provided, and at least one replica of an LRA is placed on a node. In the end, (f) represents conflict constraints between LRAs.
- 
-Figure 2.1.  Project problem statement —— Since the problem is a vector bin packing problem with conflicts we formulate it as an ILP in order to solve VB〖PC〗_d
 ![image](https://user-images.githubusercontent.com/41847989/211219573-9bd8bd4c-7338-4771-9c1a-477da6eac879.png)
 
 
