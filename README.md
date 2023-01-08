@@ -33,7 +33,10 @@ The problem is a d-dimensional vector bin packing problem with conflicts VBPd, i
 The scheduling of LRAs in nodes usually considers the nodes’ capacity, such as CPU and memory capacity, in analogy to the size of the bin in different dimensions. However, they must be accumulated in each dimension when placed. This means an LRA will occupy a separate CPU and memory buffer at runtime, not shared with other LRAs. There are also conflicts between LRAs that mutually exclusive LRAs cannot be placed in the same container.
 Garefalakis et al. (2018), Muritiba et al. (2009) and Clement et al. (2022) used the Integer Liner programming (ILP) model as a formulation for the bin packing problem with conflicts and achieved good results. Inspired by them, we formulate it as a simplified version of the ILP introduced by Clement et al. (2022). Specifically, it deals with [P3] with satisfying all constraints [R1]-[R4].
 Notations used in scheduling problems of LRAs are as follows:
-![image](https://user-images.githubusercontent.com/41847989/211219573-9bd8bd4c-7338-4771-9c1a-477da6eac879.png)
+
+<div align=center><img width="763" alt="截屏2023-01-08 21 25 46" src="https://user-images.githubusercontent.com/41847989/211219889-37c0fc4a-0875-4296-b3bc-7421ede8204d.png"></div>
+
+
 
 
 
