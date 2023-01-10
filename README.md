@@ -10,7 +10,7 @@ BP are complex discrete combinatorial optimisation problems. The classical bin p
 On top of this, there is also the vector bin packing problem with conflicts $(VB{PC}_d)$ due to conflicts between items (two items cannot be placed in the same bin) and the multidimensional requirement $\left(d\geq2\right)\$ . (e.g.size, weight of the items)
 
 ### Scheduling LRAs in shared clusters 
-The LRA scheduling problem is similar to VBPd in that the aim is to deploy all the LRAs with a minimum number of nodes without exceeding the constraints. Still, it has some specific requirements [R1]-[R4] as follows:
+The LRA scheduling problem is similar to $(VB{PC}_d)$ in that the aim is to deploy all the LRAs with a minimum number of nodes without exceeding the constraints. Still, it has some specific requirements [R1]-[R4] as follows:
 #### [R1] multi-dimensional resource requirements
 In running LRAs in a node, shared resources such as CPU cache and memory of the nodes need to be occupied, and other LRAs cannot use the occupied resources. This means that, in analogy to the items in the bin packing problem, LRAs cannot be placed in nodes in parallel in the same dimension.
 #### [R2] LRA conflict constraints
@@ -47,9 +47,17 @@ Notations used in scheduling problems of LRAs are as follows:
 
 Specifically, the problem is to allocate all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other, each node does not exceed the capacity in d dimensions, and ultimately the number of nodes is minimised. It is formulated to ILP as follows:
 
+$min    \sum_{n\in N} y_n$                                                                                                                      (a)
+$s.t.     \sum_{n\in N}{x_{i_ln}=1}                                                               {i_l\in I}_l,\ l\in L$,                            (b)
+          $\sum_{l\in L}{(s}_{lh}\bullet\sum_{i\in I_l} x_{i_ln})\le C_h\bullet y_n                                       n\in N,\ 1\le h\le d$,                    (c)
+          $\sum_{i\in I_l} x_{i_ln}\le(\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{lh}}\right\rfloor\right\}},\left|I_l\right|\right\}}\bullet z_{ln})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\in N, l\in L$,                            (d)
+          $\sum_{i\in I_l} x_{i_ln}\geq z_{ln}                                                            n\in N, l\in L$,                             (e)
+          $\sum_{i\in I_{l_1}} x_{i_{l_1}n}\le(\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{l_1h}}\right\rfloor\right\}},\left|I_{l_1}\right|\right\}}\bullet(1-z_{l_2n}))\ \ \ \  n\in N, (l_1,\ \ l_2)\in F$,                   (f)
+
+
 <div align=left><img width="725" alt="截屏2023-01-08 21 36 56" src="https://user-images.githubusercontent.com/41847989/211220351-bf9b630a-bbce-4aaa-b92e-125993fa0f14.png"></div>
 
-In this ILP, the aim (a) is to minimize the number of nodes used. (b) represents all replicas of all LRAs allocated to nodes. (c) means resources in d dimensions used in nodes not outweighed the capacity of each node. Furthermore, in (d) <img width="172" alt="截屏2023-01-08 21 38 27" src="https://user-images.githubusercontent.com/41847989/211220408-61598028-ca5e-4305-a0d7-2530b777276c.png"> is the maximum number of LRA replicas can be placed in a node ignoring conflict restrictions. So (d) and (e) ensure that the resource size required for a replica in a dimension cannot exceed the capacity of that dimension. In addition, the number of placements exceeds the number of LRA replicas that cannot be provided, and at least one replica of an LRA is placed on a node. In the end, (f) represents conflict constraints between LRAs.
+In this ILP, the aim (a) is to minimize the number of nodes used. (b) represents all replicas of all LRAs allocated to nodes. (c) means resources in d dimensions used in nodes not outweighed the capacity of each node. Furthermore, in (d)  $\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{lh}}\right\rfloor\right\}},\left|I_l\right|\right\}}$ is the maximum number of LRA replicas can be placed in a node ignoring conflict restrictions. So (d) and (e) ensure that the resource size required for a replica in a dimension cannot exceed the capacity of that dimension. In addition, the number of placements exceeds the number of LRA replicas that cannot be provided, and at least one replica of an LRA is placed on a node. In the end, (f) represents conflict constraints between LRAs.
 
 ## Methods and Techniques
 There are various solutions to the scheduling problem of LRAs, heuristic algorithms and their variants and deep reinforcement learning.
