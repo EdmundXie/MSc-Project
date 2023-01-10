@@ -7,7 +7,8 @@ The project aims to minimise the number of nodes used when allocating all LRA re
 ### Bin packing problem(BP) and its variants 
 BP are complex discrete combinatorial optimisation problems. The classical bin packing problem requires that a certain number of items are placed in several bins with equal capacity, the sum of the sizes of the items in each bin does not exceed the capacity of the bin and that the number of bins used is minimised (Vijay V, 2001). 
 
-On top of this, there is also the vector bin packing problem(VBPd) with conflicts due to conflicts between items (two items cannot be placed in the same bin) and the multidimensional requirement (d≥2)  . (e.g.size, weight of the items)
+On top of this, there is also the vector bin packing problem with conflicts $(VB{PC}_d)$ due to conflicts between items (two items cannot be placed in the same bin) and the multidimensional requirement $\left(d\geq2\right)\$ . (e.g.size, weight of the items)
+
 ### Scheduling LRAs in shared clusters 
 The LRA scheduling problem is similar to VBPd in that the aim is to deploy all the LRAs with a minimum number of nodes without exceeding the constraints. Still, it has some specific requirements [R1]-[R4] as follows:
 #### [R1] multi-dimensional resource requirements
