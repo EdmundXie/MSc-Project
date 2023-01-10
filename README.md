@@ -56,7 +56,7 @@ All data are from Alibaba traces which are sampled from one of their production 
 The experiment has three stpes as in following figure.
 <div align=center><img src="https://user-images.githubusercontent.com/41847989/186922971-a8bedcee-0247-4727-8a82-33b7152a8d0e.png"></div>
 Possible solutions for scheduling problems of LRAs —— ILP solver is to solve [P1]
-<div align=center><img width="452" alt="image" src="https://user-images.githubusercontent.com/41847989/211660016-e268e39e-bce9-4df4-b2f4-b6b5a7f826e2.png"></div>
+<div align=center><img width="900" alt="image" src="https://user-images.githubusercontent.com/41847989/211660016-e268e39e-bce9-4df4-b2f4-b6b5a7f826e2.png"></div>
 
 
 
