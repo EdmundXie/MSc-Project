@@ -77,6 +77,8 @@ In general, we choose item-centric and bin-centric heuristics as the methods. Ea
 
 In these methods, ${score}_1$ and ${score}_3$ are the criteria for priority placement of LRAs, and ${score}_2$ is the criterion used to prioritise activated nodes. In addition, heuristic algorithms, such as BF, NF, WF, etc., will have many more variants when combined with the multidimensional requirements. We use the following algorithms to calculate ${score}_1$, ${score}_2$, and ${score}_3$.
 
+<div align=center><img width="739" alt="截屏2023-01-10 21 49 18" src="https://user-images.githubusercontent.com/41847989/211669744-5e4fa9f8-03d5-4c9c-84eb-b82017f7e2fe.png"></div>
+
 
 ## Implementation of project
 All data are from Alibaba traces which are sampled from one of their production clusters, avaliable on https://tianchi.aliyun.com/dataset/dataDetail?dataId=6287. 
