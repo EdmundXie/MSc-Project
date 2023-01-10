@@ -48,11 +48,16 @@ Notations used in scheduling problems of LRAs are as follows:
 Specifically, the problem is to allocate all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other, each node does not exceed the capacity in d dimensions, and ultimately the number of nodes is minimised. It is formulated to ILP as follows:
 
 $min    \sum_{n\in N} y_n$                                                                                                                      (a)
+
 $s.t.     \sum_{n\in N}{x_{i_ln}=1}                                                               {i_l\in I}_l,\ l\in L$,                            (b)
+
           $\sum_{l\in L}{(s}_{lh}\bullet\sum_{i\in I_l} x_{i_ln})\le C_h\bullet y_n                                       n\in N,\ 1\le h\le d$,                    (c)
+          
           $\sum_{i\in I_l} x_{i_ln}\le(\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{lh}}\right\rfloor\right\}},\left|I_l\right|\right\}}\bullet z_{ln})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\in N, l\in L$,                            (d)
+          
           $\sum_{i\in I_l} x_{i_ln}\geq z_{ln}                                                            n\in N, l\in L$,                             (e)
-          $\sum_{i\in I_{l_1}} x_{i_{l_1}n}\le(\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{l_1h}}\right\rfloor\right\}},\left|I_{l_1}\right|\right\}}\bullet(1-z_{l_2n}))\ \ \ \  n\in N, (l_1,\ \ l_2)\in F$,                   (f)
+         
+         $\sum_{i\in I_{l_1}} x_{i_{l_1}n}\le(\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{l_1h}}\right\rfloor\right\}},\left|I_{l_1}\right|\right\}}\bullet(1-z_{l_2n}))\ \ \ \  n\in N, (l_1,\ \ l_2)\in F$,                   (f)
 
 
 <div align=left><img width="725" alt="截屏2023-01-08 21 36 56" src="https://user-images.githubusercontent.com/41847989/211220351-bf9b630a-bbce-4aaa-b92e-125993fa0f14.png"></div>
