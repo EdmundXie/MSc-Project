@@ -49,9 +49,7 @@ Specifically, the problem is to allocate all LRA replicas among multiple nodes s
 
 <div align=left><img width="725" alt="截屏2023-01-08 21 36 56" src="https://user-images.githubusercontent.com/41847989/211220351-bf9b630a-bbce-4aaa-b92e-125993fa0f14.png"></div>
 
-In this ILP, the aim (a) is to minimize the number of nodes used. (b) represents all replicas of all LRAs allocated to nodes. (c) means resources in d dimensions used in nodes not outweighed the capacity of each node. Furthermore, in (d) 
-$\min{\left\{\min\below{1\le h\le d}{\left\{\left\lfloor\frac{C_h}{s_{lh}}\right\rfloor\right\}},\left|I_l\right|\right\}}$
-is the maximum number of LRA replicas can be placed in a node ignoring conflict restrictions. So (d) and (e) ensure that the resource size required for a replica in a dimension cannot exceed the capacity of that dimension. In addition, the number of placements exceeds the number of LRA replicas that cannot be provided, and at least one replica of an LRA is placed on a node. In the end, (f) represents conflict constraints between LRAs.
+In this ILP, the aim (a) is to minimize the number of nodes used. (b) represents all replicas of all LRAs allocated to nodes. (c) means resources in d dimensions used in nodes not outweighed the capacity of each node. Furthermore, in (d) <img width="182" alt="截屏2023-01-10 21 31 08" src="https://user-images.githubusercontent.com/41847989/211666651-67472a46-9a9e-4c9e-bc28-48a51918df79.png"> is the maximum number of LRA replicas can be placed in a node ignoring conflict restrictions. So (d) and (e) ensure that the resource size required for a replica in a dimension cannot exceed the capacity of that dimension. In addition, the number of placements exceeds the number of LRA replicas that cannot be provided, and at least one replica of an LRA is placed on a node. In the end, (f) represents conflict constraints between LRAs.
 
 ## Methods and Techniques
 There are various solutions to the scheduling problem of LRAs, heuristic algorithms and their variants and deep reinforcement learning.
