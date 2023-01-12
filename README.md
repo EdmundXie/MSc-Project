@@ -98,8 +98,15 @@ The results are in `src/data/results`. Running `Result_Analysis.ipynb` to analys
 
 ## Results of the Empirical Investigation
 The main goal of this project is to find a valid placing while minimising the number of nodes used when allocating all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other and each node does not exceed the capacity in all dimensions. We deploy the experiment with different heuristic algorithms (item-centric and bin-centric) provided by Clement et al. (2022)  on the Alibaba Tianchi dataset. The data we used contains 9k LRAs with 68k replicas, 641 LRA pairs with conflicts, and the nodes with 32 CPU cores and 64 GB memory. And we compare the time consumption and the number of nodes used in each algorithm. For further evaluation in the next chapter, there are two sections of the result of this empirical investigation as follows.
-The time consumption
+
+### The time consumption
 In this section, we recorded the execution time of each algorithm module in the program when placing all LRA replicas in multiple nodes. The results are as table 4.1.
-![image](https://user-images.githubusercontent.com/41847989/212106368-397a0246-cbc8-4859-a600-7517873e26fb.png)
+<div align=center><img width="741" alt="截屏2023-01-12 15 21 27" src="https://user-images.githubusercontent.com/41847989/212106824-a04cc1fa-20e2-40ff-9214-519a1d6fc3a7.png"></div>
+
+### The number of nodes used
+In this section, we recorded the number of nodes used in each algorithm when placing all 
+LRA replicas in multiple nodes. The results are as table 4.2.
+<div align=center><img width="739" alt="截屏2023-01-12 15 22 38" src="https://user-images.githubusercontent.com/41847989/212107290-d5f551b6-1237-45e0-a1ae-05b83fcb5603.png"></div>
+<div align=center><img width="736" alt="截屏2023-01-12 15 22 51" src="https://user-images.githubusercontent.com/41847989/212107390-608fe1cf-e23a-4f88-87c5-3ba81a4ba53b.png"></div>
 
 
