@@ -109,4 +109,36 @@ LRA replicas in multiple nodes. The results are as table 4.2.
 <div align=center><img width="739" alt="截屏2023-01-12 15 22 38" src="https://user-images.githubusercontent.com/41847989/212107290-d5f551b6-1237-45e0-a1ae-05b83fcb5603.png"></div>
 <div align=center><img width="736" alt="截屏2023-01-12 15 22 51" src="https://user-images.githubusercontent.com/41847989/212107390-608fe1cf-e23a-4f88-87c5-3ba81a4ba53b.png"></div>
 
+According to tables 4.1 and 4.2, item-centric heuristics (FF and its variants FFDAvgSum and FFDExpSum) consume much less time than other algorithms, and use fewer nodes to allocate all replicas of all LRAs. However, bin-centric heuristics (FFDDotProduct and FFDL2-Norm) consume a much longer time while using more nodes.
 
+Specifically, in item-centric heuristics, FF consumed the least amount of time with 503 msand used the least number of nodes with only 11016 nodes among its variants, while FFDL2-Norm consumed the most time and used the most nodes, with 191263 ms and 12548 nodes.
+
+## Validation of Results
+To compare the effectiveness of the algorithms, we use two performance metrics: the deviation from the lower bound of the optimal solution and the time consumed. Both can be recorded while the algorithm is running. In particular, the lower bound of the optimal solution can be expressed as follows by calculating a strong lower bound on the bin packing problem mentioned by Vazirani(Vijay V, 2001)：
+<div align=center><img width="744" alt="截屏2023-01-12 15 24 38" src="https://user-images.githubusercontent.com/41847989/212107864-05d9881c-0771-4f2d-8ca2-d275ad979e23.png"></div>
+
+Then we calculate the deviation from  of each algorithm. Finally, we use bar charts and a scatter chart to visualize the results discussed in chapter 4.
+
+<div align=center><img width="671" alt="截屏2023-01-12 15 25 12" src="https://user-images.githubusercontent.com/41847989/212107979-f2c50ae9-75a4-4e57-b83f-8f14fc564be0.png"></div>
+
+<div align=center><img width="744" alt="截屏2023-01-12 15 25 35" src="https://user-images.githubusercontent.com/41847989/212108084-dfc065f0-23ac-4c90-ad2e-2c5598dc1202.png"></div>
+
+In general, in this experiment, the item-centric heuristics (FF and its variants FFDAvgSum and FFDExpSum) are better-performing than the bin-centric heuristics (FFDDotProduct and FFDL2-Norm). Firstly, FF performed the best consuming 503 ms with a 9.63% deviation.And the other two item-centric heuristics(FFDAvgSum and FFDExpSum) performed similarlywithin a second, and find a valid placing with an 11% deviation on average. However, in the bin-centric heuristics, FFDDotProduct consumed 10 s with a 24.4% deviation, and FFDL2-Norm performed the worst consuming 20 s with a 24.8% deviation.
+
+## Conclusions and Future Work
+
+### Conclusions
+The aim of the project is to minimise the number of nodes used when allocating all LRA replicas among multiple nodes such that the LRAs in all nodes do not conflict with each other and each node does not exceed the capacity in all dimensions in a specific dataset. 
+
+It is the $(VB{PC}_d)$ with specific requirements [R1]-[R4]. And it is NP-hard for every $d$. Inspiredby Garefalakis et al. (2018), Muritiba et al. (2009) and Clement et al. (2022), we formulate it as a simplified version of the ILP introduced by Clement et al. (2022). We reviewed previous research on similar problems of scheduling LRAs and found out that they have covered [P1]-[P3] with [R1]-[R3], but each study focuses on different problems and fulfils different requirements. This report is intended to find an algorithm which should satisfy [R1]-[R4] to solve [P3]. Then we chose item-centric (FFD and its variants FFDAvgSum and FFDExpSum) and bin-centric heuristics (FFDDotProduct and FFDL2-Norm) as the methods to solve this ILP. In addition, we generate and analyse the data from Alibaba's open source cluster trace and implement all the algorithms provided by Clement. Finally, we evaluate the algorithms by the time they consume in the experiment and the deviation between them and the lower bound of optimal solutions. The result of this investigation shows that item-centric heuristic algorithms perform better than bin-centric heuristics in scheduling replicas of LRAs on the Alibaba dataset.
+
+### Future Work
+This report is limited by the dataset and the complexity of the problem. The original data only contains 9k LRAs with 68k replicas and 641 LRA pairs with conflicts. Due to the small proportion of LRAs with conflicts, the advantages of the variant algorithm are difficult to be shown. Furthermore, only this one data set was used for this experiment, so there is a lack of controls for the test results. Further work needs to be done to find a better algorithm to solve the LRA scheduling problem with more requirements.
+
+The first step is to expand the original dataset. Not only does the number of LRAs need to be expanded, but also the number of LRAs with conflicts should be increased.
+
+Then the requirements should be expanded to include the resource requirements of LRAs 
+over time, affinity constraints between LRAs, etc.
+
+Finally, the algorithm library should be expanded and comparisons should be made with 
+previous studies.
